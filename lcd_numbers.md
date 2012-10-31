@@ -1,7 +1,7 @@
 LCD 数字
 =======
 
-这个quiz的目标是写个程序来显示指定大小的LCD风格的数字。(译注：对于此题参见<a href="http://poj.org/problem?id=1102">poj第1102题</a>，hoj此题测试数据格式有误)
+这个quiz的目标是写个程序来显示指定大小的LCD风格的数字。(译注：对于此题参见[poj第1102题](http://poj.org/problem?id=1102)，hoj此题测试数据格式有误)
 
 需要显示的数字作为参数传递给程序。用带-s选项的正整数作为命令行参数来控制数字大小。默认的值-s值是2。
 
@@ -83,7 +83,7 @@ end
 ```
 把上面这些想法结合在一起，就得到了下面的完整解法。
 
-<a href="http://media.pragprog.com/titles/fr_quiz/code/lcd_numbers/template.rb">lcd_numbers/template.rb</a>
+[lcd_numbers/template.rb](http://media.pragprog.com/titles/fr_quiz/code/lcd_numbers/template.rb)
 
 ```ruby
 # template
@@ -156,7 +156,7 @@ num.each { |l| puts l.join }
 
 这种表示法的处理方式和前面的方法差不多。下面是Florian Gro&beta的完整的解题代码：
 
-<a href="http://media.pragprog.com/titles/fr_quiz/code/lcd_numbers/bits.rb">lcd_numbers/bits.rb</a>
+[lcd_numbers/bits.rb](http://media.pragprog.com/titles/fr_quiz/code/lcd_numbers/bits.rb)
 
 ```ruby
 module LCD
@@ -243,7 +243,7 @@ end
 
 最后，一种独特的策略是引入状态机。我们来看看Dale Martenson解法的主要类构成。
 
-<a href="http://media.pragprog.com/titles/fr_quiz/code/lcd_numbers/states.rb">lcd_numbers/states.rb</a>
+[lcd_numbers/states.rb](http://media.pragprog.com/titles/fr_quiz/code/lcd_numbers/states.rb)
 
 ```ruby
 class LCD
@@ -356,7 +356,8 @@ LCD类开头的注释能给你很大的帮助去理解该类的作用。这个�
 
 Dale的代码的其他部分是命令行参数处理和对display的调用：
 
-<a href="http://media.pragprog.com/titles/fr_quiz/code/lcd_numbers/states.rb">lcd_numbers/states.rb</a>
+[lcd_numbers/states.rb](http://media.pragprog.com/titles/fr_quiz/code/lcd_numbers/states.rb)
+
 ```ruby
 require 'getoptlong'
 
