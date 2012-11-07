@@ -27,12 +27,11 @@ TAG-OR-ID是该节点的数据类型的一个标记，或者是一个特殊的�
 
 这样，我们看看刚才给出的例子。能看出来：
 
-
-+0 @I1@ INDI.这行表示一个类型为INDI("individual")的子树的开始。该个人的ID是@I1@。
-+1 NAME Jamis Gordon /Buck/. 从这行展开一个名为NAME的子树，其值为Jamis Gordon /Buck/
-+2 SURN Buck. 这是NAME子树的一个子元素，类型是SURN。(译注：意即surname姓)
-+2 GIVN Jamis Gordon. 和上面的SURN差不多，指明了该人的名(given name)
-+1 SEX M. 建立了一个新的INDI的子元素，类型为SEX (比如, "gender").
+*0 @I1@ INDI.这行表示一个类型为INDI("individual")的子树的开始。该个人的ID是@I1@。
+*1 NAME Jamis Gordon /Buck/. 从这行展开一个名为NAME的子树，其值为Jamis Gordon /Buck/
+*2 SURN Buck. 这是NAME子树的一个子元素，类型是SURN。(译注：意即surname姓)
+*2 GIVN Jamis Gordon. 和上面的SURN差不多，指明了该人的名(given name)
+*1 SEX M. 建立了一个新的INDI的子元素，类型为SEX (比如, "gender").
 
 剩下差不多都这样。
 
@@ -208,9 +207,9 @@ GED2XML.new.process ARGF
 
 我们接着来看process方法，这是程序的核心部分。这也和前面Hans的解法差不多。只有这么几个区别：
 
-+输出将直接打印出来，而不是用REXML来建立元素。
-+把元素弹出栈的时候，我们需要打印一个结束标记。
-+这也意味着我们需要在解析了所有的东西后再清空栈，以确保所有的元素都有结束标记。
+*输出将直接打印出来，而不是用REXML来建立元素。
+*把元素弹出栈的时候，我们需要打印一个结束标记。
+*这也意味着我们需要在解析了所有的东西后再清空栈，以确保所有的元素都有结束标记。
 
 这就是解法的全部内容了。正如你看到的那样，最后一行只是简单的把ARGF传给process来触发转换。
 
