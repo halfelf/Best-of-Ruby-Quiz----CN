@@ -1,4 +1,5 @@
 GEMCOM解析器
+====================
 
 GEDCOM是"GEnealogical Data COMmunication"文件格式。这是一种用来传递基因图谱数据的纯文本电子文档。这个问题的目标是建立一个简单的解析器来把GEDCOM转换成XML。
 
