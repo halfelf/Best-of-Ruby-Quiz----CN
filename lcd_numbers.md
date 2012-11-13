@@ -381,4 +381,4 @@ lcd.display( ARGV.shift )
 
 1.修改你的解法，使之在建立一行的时候就输出，而不是等到整个数字完成。
 
-2.扩展Florian Gro&beta的解法，增加十六进制数字A到F
+2.扩展Florian Groß的解法，增加十六进制数字A到F
