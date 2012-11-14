@@ -3,11 +3,15 @@
 
 这个Ruby测验是要写出一个您童年时候喜欢的游戏：填字游戏。没有玩过也不用担心，很容易学。填字游戏就是一句夹杂几个占位符的小故事，像这样：
 
+<pre>
 I had a ((an adjective)) sandwich for lunch today. It dripped all over my ((a body part)) and ((a noun)).
+</pre>
 
 出题人，作为唯一一个知道这个故事的人，将要求另外一个人想出每个占位符所对应的答案并记下来。在这个例子中，他们想要一个形容词，身体某个部分和一个名词。然后出题人把答案放进去念出来。这里可能会变成这个样子：
 
+<pre>
 I had a smelly sandwich for lunch today. It dripped all over my big toe and bathtub.
+</pre>
 
 有人笑了吧～
 
@@ -15,19 +19,27 @@ I had a smelly sandwich for lunch today. It dripped all over my big toe and bath
 
 这个故事的格式很简单，用一组((...))标记占位符。像这样：
 
+<pre>
 Our favorite language is ((a gemstone)).
+</pre>
 
 如果你的程序是按照这个模板写的，它还需要你给出“a gemstone”并显你编的故事：
 
+<pre>
 Our favorite language is Ruby.
+</pre>
 
 这样就涵盖了简单的情况，但有些时候我们可能需要多次使用某个答案。所以要引入一种标志符：
 
+<pre>
 Our favorite language is ((gem:a gemstone)). We think ((gem)) is better than ((a gemstone)).
+</pre>
 
 对于上面这个故事，你的程序将要求两块宝石（gemstone），并用一个来替换((gem:...))和((gem))。当((...))中出现一个冒号的时候，冒号前的部分将作为一个指针指向可重用的值，而冒号之后的部分就是值。这样就有了如下的结果：
 
+<pre>
 Our favorite language is Ruby. We think Ruby is better than Emerald.
+</pre>
 
 你可以选择任何你喜欢的界面，只要用户可以得到最终结果。你可以和the Ruby Quiz网站上一个基于CGI的实现来玩这个游戏。也可以找到我在the Ruby Quiz网站上所用的两个填字游戏文件。
 
@@ -43,7 +55,7 @@ Ruby包含了一个叫做ERB的标准库，ERB允许你将Ruby代码嵌入任何
 
 对于这个测验，我们只需要ERB的一个特性。当我们把ERB应用到一个文件时，任何在看起来很好玩的<%=... %> 标记中的Ruby代码会被执行，并且该执行代码的返回值会插入该文档中。这可以被看作是一种延迟的改写（就像Ruby的#{...}语法，发生在被触发时而非字符串创建时）
 
-我们来使用下ERB：
+我们用ERB试试：
 
 [madlibs/erb_madlib.rb](http://media.pragprog.com/titles/fr_quiz/code/madlibs/erb_madlib.rb)
 
@@ -125,7 +137,6 @@ end
 通过parse?()方法，你可以把文中要替换的值转换成要用来补全故事的编码元素。当参数token不是一个要替换的值的时候，parse?()的返回值为false，否则返回用来替换的对象。
 
 在parse?()里，如果某个标志符以((开始并且是replacements这个Hash的键值，则该标志符被选中。这样就存储名字和该Hash以便需要的时候查找，即运行to_s()方法。
-
 
 轮到Question对象了：
 
@@ -216,9 +227,9 @@ end
 puts story.join
 ```
 
-在一些熟悉的参数解析代码后，从输入到最终结果，我们的解决方案用共有三步。 首先输入文件被分解成标志符。这一步符号化只是简单的调用split()。请注意，split()所使用的正则表达式捕获的所有东西都是返回集合的一部分。这样记号((...))也会被返回，尽管他们还是split()的分隔符。然而，捕获的括号会丢弃结尾的))。开头的((仍然会保留以待之后的识别。最后，所有的空白符都会统一转化为一个空格，避免他们占用多行。
+在一些熟悉的参数解析代码后，从输入到最终结果，我们的解决方案用共有三步。 首先输入文件被分解成标志符。这一步符号化只是简单的调用split()。请注意，split()使用的正则表达式捕获的所有东西都是返回集合的一部分。这样记号((...))也会被返回，尽管他们还是split()的分隔符。然而，捕获的括号会丢弃结尾的))。开头的((仍然会保留以待之后的识别。最后，所有的空白符都会统一转化为一个空格，避免他们占用多行。
 
-在第二步中，每个标志符都根据我们先前的定义被转换成一个Replacement，Question或者String对象。别让那个好看的inject()调用弄晕了你。我也可以用element or kind.parse?(token, answers)。但前者的好处是即便检查到了一个匹配，还会继续检查所有的类。 break则是当我们找到能接受标志符的结果后从里面跳出来。
+在第二步中，每个标志符都根据我们先前的定义被转换成一个Replacement，Question或者String对象。别让那个花哨的inject()调用弄晕了你。也可以写成element or kind.parse?(token, answers)。但前者的好处是即便检查到了一个匹配，还会继续检查所有的类。 break则表示当我们找到能接受标志符的结果后从里面跳出。
 
 最后一步则是再现该故事。为了理解者简单的一行代码，你需要知道在组合所有的对象前会调用to_s()，以保证join()所有的元素都是String对象。
 
@@ -253,4 +264,4 @@ puts打印出的第二行是填字游戏的名称，这是从文件名得到的�
 
 1.扩展填字游戏的语法以支持条件变化
 
-2.增强你的程序以适应新语法
+2.改进你的程序以适应新语法
